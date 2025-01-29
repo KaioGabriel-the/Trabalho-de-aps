@@ -12,7 +12,7 @@ body {
 
 /* Estilo para o container da tela de login */
 #tela_login {
-    background-color: rgb(241, 183, 76);  /* Fundo branco para o form */
+    background-color: rgba(241, 183, 76, 0.825);  /* Fundo branco para o form */
     padding: 30px;
     border-radius: 8px;       /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombras suaves */

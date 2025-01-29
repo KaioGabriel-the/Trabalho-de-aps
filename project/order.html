@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Pedido</title>
+    <link rel="stylesheet" href="assets/styles/order.css">
+</head>
+<body>
+    <div>
+        <h1 id="title_pedido">PIZZA</h1>
+        <form id="form_pedido">
+            <fieldset>
+                <legend>Detalhes do Pedido</legend>
+
+                <div>
+                    <label for="sabor_pizza">Sabor da pizza:</label>
+                    <select id="sabor_pizza" name="sabor_pizza" required>
+                        <option value="" disabled selected>Selecione um sabor</option>
+                        <option value="calabresa">Calabresa</option>
+                        <option value="mussarela">Mussarela</option>
+                        <option value="portuguesa">Portuguesa</option>
+                        <option value="marguerita">Marguerita</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="tamanho_pizza">Tamanho da pizza:</label>
+                    <select id="tamanho_pizza" name="tamanho_pizza" required>
+                        <option value="" disabled selected>Selecione o tamanho</option>
+                        <option value="pequena">Pequena</option>
+                        <option value="media">Média</option>
+                        <option value="grande">Grande</option>
+                        <option value="familia">Família</option>
+                    </select>
+                </div>
+
+                <button type="submit">Confirmar Pedido</button>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
