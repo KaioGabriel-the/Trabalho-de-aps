@@ -41,7 +41,10 @@ async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
         body: JSON.stringify({ nome: nomeCadastro, endereco: endereco, telefone: telefone, bairro: bairro }) // atualiza o corpo do JSON enviado, passando cada propriedade com o parâmetro devido
     })
     .then(response => response.json())
-    .then(data => console.log('Sucesso:', data))
+    .then(data => {
+        console.log('Sucesso:', data)
+        window.location.href = "order.html";
+    })
     .catch(error => console.error('Erro:', error));
     
 }
