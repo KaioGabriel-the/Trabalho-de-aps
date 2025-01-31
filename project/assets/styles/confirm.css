@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;  /* Fonte limpa e padrão */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;  /* Fundo claro */
+    background-color: #f4f4f960;  /* Fundo claro */
     display: flex;
     justify-content: center;  /* Centraliza o conteúdo na tela */
     align-items: center;      /* Centraliza na vertical */

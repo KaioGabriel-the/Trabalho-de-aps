@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;  /* Fonte mais limpa */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;  /* Cor de fundo clara */
+    background-color: #090925;  /* Cor de fundo clara */
     display: flex;
     justify-content: center;  /* Centraliza a tela */
     align-items: center;      /* Centraliza a tela verticalmente */
@@ -12,7 +12,7 @@ body {
 
 /* Estilo para o container da tela de pedido */
 #form_pedido {
-    background-color: rgba(241, 183, 76, 0.825);  /* Fundo branco para o form */
+    background-color: rgba(218, 104, 51, 0.981);  /* Fundo branco para o form */
     padding: 30px;
     border-radius: 8px;       /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombras suaves */
@@ -23,7 +23,7 @@ body {
 /* Estilo para o título */
 #title_pedido {
     font-size: 28px;
-    color: #333;
+    color: #f33a10;
     margin-bottom: 20px;
     text-align: center;      /* Espaço abaixo do título */
 }
@@ -40,7 +40,7 @@ fieldset {
 legend {
     font-weight: bold;
     font-size: 18px;
-    color: #222;
+    color: #090925;
 }
 
 /* Estilo para os rótulos (labels) */
