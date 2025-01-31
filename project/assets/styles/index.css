@@ -3,6 +3,7 @@ body {
     font-family: "Josefin Sans", serif;  /* Fonte limpa e moderna */
     margin: 0;
     padding: 0;
+    gap: 40px;
     background-color: #090925;  /* Cor de fundo escura */
     display: flex;
     flex-direction: column;     /* Alinha os itens em coluna */
@@ -11,27 +12,16 @@ body {
     height: 100vh;              /* Altura total da tela */
 }
 
-#nome_pizzaria {
-    width: 50vw; /* Faz o nome da pizzaria ocupar 100% da largura da viewport */
-    text-align: center;  /* Centraliza o texto */
-    color: #00b7ff; /* Cor do texto */
-    padding: 20px;
-    background-color: #ffd82c;  /* Fundo laranja com transparência */
-    border-radius: 0 0 10px 10px;  /* Bordas arredondadas na parte inferior */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Sombra suave */
-    position: absolute; /* Faz o nome da pizzaria ficar fixo no topo */
-    top: 0;  /* Coloca o nome no topo da tela */
-    left: 0;  /* Garante que ele começa da extremidade esquerda */
-}
+#nome_pizzaria{
+    display: flex;
+    color: #ffd82c;
+    padding: 12.5px;
+    font-size: 25px;
+    text-shadow: 
+    0 1px 0 #f44336, /* Primeira camada */
+    0 2px 0 #d32f2f, /* Segunda camada */
+    0 3px 0 #b71c1c; /* Terceira camada */
 
-/* Estilo para o título do nome da pizzaria */
-#nome_pizzaria h1 {
-    font-size: 3em;  /* Tamanho grande para o nome da pizzaria */
-    letter-spacing: 2px; /* Espaçamento entre as letras */
-    text-transform: uppercase; /* Texto em maiúsculas */
-    font-weight: 700; /* Peso mais pesado */
-    margin: 0;  /* Remove a margem padrão do h1 */
-    padding: 0;  /* Remove o padding do h1 */
 }
 
 /* Estilo para o container da tela de login */
