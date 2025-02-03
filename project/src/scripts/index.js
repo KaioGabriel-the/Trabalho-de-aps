@@ -32,19 +32,25 @@ document.addEventListener("DOMContentLoaded", ()=> {
 async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
     const urlBase = "http://localhost:3000"; // concatena a URL referência do servidor com a rota /cadastrar_cliente
     
-    // Método fetch, que envia uma requisição HTTP do tipo POST para o servidor e envia dados como um JSON
-    fetch(urlBase+"/cadastrar_cliente", {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json' // envia os dados como um JSON
-        },
-        body: JSON.stringify({ nome: nomeCadastro, endereco: endereco, telefone: telefone, bairro: bairro }) // atualiza o corpo do JSON enviado, passando cada propriedade com o parâmetro devido
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Sucesso:', data)
-        window.location.href = "order.html";
-    })
-    .catch(error => console.error('Erro:', error));
-    
+    try {
+        const response = await fetch(urlBase+"/cadastrar_cliente", {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json' // envia os dados como um JSON
+            },
+            body: JSON.stringify({ nome: nomeCadastro, endereco: endereco, telefone: telefone, bairro: bairro })
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {  // Verifica se a resposta foi bem-sucedida
+            console.log('Sucesso:', data);
+            window.location.href = "order.html";  // Redireciona apenas se o envio for bem-sucedido
+        } else {
+            console.error('Erro ao cadastrar cliente:', data);
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+    }
 }
+
