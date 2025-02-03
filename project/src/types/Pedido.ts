@@ -5,6 +5,7 @@ export class Pedido {
     private _sabor: String;
     private _tamanho: String;
     private _preco: Number;
+    private _comBorda: Boolean;
 
     constructor(quantidade: Number, sabor: String, tamanho: String, preco: Number){
         this._quantidade = quantidade;
@@ -36,6 +37,10 @@ export class Pedido {
 
     get preco(): Number {
         return this._preco;
+    }
+
+    public presencaBorda(): Boolean {
+        return this._comBorda;
     }
 
     

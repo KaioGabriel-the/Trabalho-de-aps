@@ -32,9 +32,9 @@ app.post('/cadastrar_cliente', (req, res) => {
 
 // Cria a rota '/cadastrar_pedido' usada pelo order.js no front end
 app.post('/cadastrar_pedido', (req, res) => {
-    const { sabor_pizza, tamanho_pizza } = req.body;
+    const { sabor_pizza, tamanho_pizza, com_borda } = req.body;
 
-    const pedidoData = `Sabor: ${sabor_pizza}\nTamanho: ${tamanho_pizza}\n\n`;
+    const pedidoData = `Sabor: ${sabor_pizza}\nTamanho: ${tamanho_pizza}\nCom Borda: ${com_borda === 'com_borda' ? 'Sim' : 'Não'}\n\n`;
     const filePath = path.join(__dirname, 'pedidos.txt');
 
     fs.appendFile(filePath, pedidoData, (err) => {
