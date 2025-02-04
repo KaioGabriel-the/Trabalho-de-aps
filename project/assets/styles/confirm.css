@@ -1,6 +1,7 @@
 /* Estilos gerais para o body */
 body {
-    font-family: "Josefin Sans", serif;  /* Fonte limpa e padrão */
+    display: flex;
+    font-family: 'Nunito', sans-serif; /* Fonte limpa e padrão */
     margin: 0;
     padding: 0;
     background-color: #090925;  /* Cor de fundo escura */
@@ -13,18 +14,23 @@ body {
 
 /* Estilo para o container da mensagem */
 section {
-    background-color: #6fa7eb;  /* Fundo similar ao formulário de pedido */
-    padding: 30px;
+    background: linear-gradient(135deg, #1e1e3f, #32325d);
+    padding: 30px;  /* Fundo similar ao formulário de pedido */
+    gap: 1000px;
     border-radius: 8px;       /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra suave */
-    width: 300px;
-    height: 150px;             /* Largura fixa */
+    width: 500px;
+    height: 200px;             /* Largura fixa */
 }
 
+section:hover{
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
+
+}
 /* Estilo para o título principal */
 h1 {
     font-size: 28px;
-    color: #4cf14fe6;
+    color: #ffcc00;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px #000000; /* Sombra única com desfoque */
 }
@@ -32,7 +38,18 @@ h1 {
 /* Estilo para o subtítulo */
 h2 {
     font-size: 18px;
-    color: #ffd82c;
+    color: #ffff;
+}
+
+#verClientes {
+    font-family: 'Nunito', sans-serif;
+    width: 93.75%;            /* 75% * 1.25 = 93.75% */
+    padding: 12.5px;          /* 10px * 1.25 = 12.5px */
+    margin-top: 12.5px;       /* Espaçamento proporcional */
+    border: none;
+    border-radius: 50px;      /* Aumentei ligeiramente para manter a proporção */
+    font-size: 20px;          /* 16px * 1.25 = 20px */
+    cursor: pointer;
 }
 
 /* Responsividade */
