@@ -5,12 +5,14 @@ const Pedido = require('./bancoPedido');    // Importando o modelo de Pedido
 
 const app = express();
 const cors = require('cors');
-app.use(cors()); // Permite requisições HTTP entre o front-end e back-end
+
+app.use(cors()); // Permite requisições HTTP entre o front-end e o back-end
+app.use(express.json());
+app.use(express.static("src")); // Servir arquivos estáticos (HTML, CSS, JS)
+
 const port = 3000;
 
-app.use(express.json());
-
-// variável de controle para sempre ter uma cópia do id do último cliente cadastrado
+// variável de controle para armazenar o último cliente cadastrado
 let idUltimoClient;
 
 // Conexão com o MongoDB Atlas
@@ -26,7 +28,6 @@ app.post('/cadastrar_cliente', async (req, res) => {
     const { nome, endereco, telefone, bairro } = req.body;
 
     try {
-        // Criando um novo cliente no banco
         const novoCliente = new Cliente({
             nome,
             endereco,
@@ -34,7 +35,6 @@ app.post('/cadastrar_cliente', async (req, res) => {
             bairro
         });
 
-        // Salvando o cliente no banco
         await novoCliente.save();
         idUltimoClient = novoCliente._id;
 
@@ -50,30 +50,47 @@ app.post('/cadastrar_pedido', async (req, res) => {
     const { sabor_pizza, tamanho_pizza, com_borda } = req.body;
 
     try {
-        // Buscar o último cliente cadastrado
         const clienteExistente = await Cliente.findById(idUltimoClient);
-
         if (!clienteExistente) {
             return res.status(400).json({ message: 'Cliente não encontrado' });
         }
 
         console.log("ENCONTREI O ID DO ÚLTIMO CLIENTE: " + clienteExistente._id);
 
-        // Criando um novo pedido associado ao cliente
         const novoPedido = new Pedido({
             sabor_pizza,
             tamanho_pizza,
             com_borda: com_borda === 'com_borda' ? true : false,
-            cliente: clienteExistente._id  // Relacionando o pedido com o cliente
+            cliente: clienteExistente._id
         });
 
-        // Salvando o pedido no banco
         await novoPedido.save();
 
         res.status(201).json({ message: 'Pedido registrado com sucesso!' });
     } catch (err) {
         console.error('Erro ao salvar pedido:', err);
         res.status(500).json({ message: 'Erro ao salvar pedido', error: err });
+    }
+});
+
+// Rota para buscar todos os clientes no banco com a função criada em Clientes
+app.get("/clientes", async (req, res) => {
+    try {
+        const clientes = await Cliente.find();  // Busca todos os clientes no MongoDB
+        res.json(clientes);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar clientes", error });
+    }
+});
+
+
+// Rota para Listar Pedidos e Clientes Associados
+app.get("/pedidos", async (req, res) => {
+    try {
+        const pedidos = await Pedido.find().populate("cliente"); // Trazendo o cliente associado ao pedido
+        res.json(pedidos);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar pedidos", error });
     }
 });
 
