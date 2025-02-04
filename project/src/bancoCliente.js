@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Importa o mongoose manipulação do Banco de Dados
 
-// Definição do schema do Cliente
+
+// Definição do esquema (método Schema()) para a coleção Cliente no MongoDB, definindo a estrutura como cliente será armazenado no Banco de Dados.
 const clienteSchema = new mongoose.Schema({
     nome: { type: String, required: true },
     endereco: { type: String, required: true },
@@ -8,7 +9,7 @@ const clienteSchema = new mongoose.Schema({
     bairro: { type: String, required: true }
 });
 
-// Criação do modelo de Cliente
+// Cria um modelo de Cliente de acordo com o esquema definido, permitindo manipulá-lo diretamente na collection Clientes do Banco
 const Cliente = mongoose.model('Cliente', clienteSchema);
 
-module.exports = Cliente;
+module.exports = Cliente; // Exporta o modelo para ser usado no projeto 
