@@ -26,10 +26,13 @@ body {
     width: 320px;
 }
 
+.tela-login-inicial:hover {
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
+}
 /* Título */
 .titulo-tela-login {
     font-size: 26px;
-    color: #fff;
+    color: #ffcc00;
     margin-bottom: 20px;
 }
 

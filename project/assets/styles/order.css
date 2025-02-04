@@ -21,7 +21,7 @@ body {
 /* Título principal */
 #title_pedido {
     font-size: 36px;
-    color: white;
+    color: #ffcc00;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 2px;
@@ -38,6 +38,9 @@ body {
     width: 450px;
 }
 
+#form_pedido:hover{
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
+}
 /* Fieldset */
 fieldset {
     border: 2px solid rgba(255, 255, 255, 0.5);
