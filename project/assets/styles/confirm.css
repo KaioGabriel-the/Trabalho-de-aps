@@ -1,60 +1,79 @@
-/* Estilos gerais para o body */
-body {
-    display: flex;
-    font-family: 'Nunito', sans-serif; /* Fonte limpa e padrão */
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
-    background-color: #090925;  /* Cor de fundo escura */
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Fundo da página */
+body {
     display: flex;
-    justify-content: center;  /* Centraliza o conteúdo na tela */
-    align-items: center;      /* Centraliza na vertical */
-    height: 100vh;            /* Altura total da tela */
-    text-align: center;       /* Centraliza o texto */
-}
-
-/* Estilo para o container da mensagem */
-section {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     background: linear-gradient(135deg, #1e1e3f, #32325d);
-    padding: 30px;  /* Fundo similar ao formulário de pedido */
-    gap: 1000px;
-    border-radius: 8px;       /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra suave */
-    width: 500px;
-    height: 200px;             /* Largura fixa */
+    text-align: center;
+    padding: 20px;
 }
 
-section:hover{
+/* Container da mensagem */
+section {
+    background: rgba(255, 255, 255, 0.12); /* Fundo semi-transparente */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    width: 450px;
+    transition: 0.3s;
+}
+
+/* Efeito ao passar o mouse */
+section:hover {
     box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
-
 }
-/* Estilo para o título principal */
+
+/* Título principal */
 h1 {
     font-size: 28px;
     color: #ffcc00;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px #000000; /* Sombra única com desfoque */
+    text-shadow: 2px 2px 4px #000;
 }
 
-/* Estilo para o subtítulo */
+/* Subtítulo */
 h2 {
     font-size: 18px;
-    color: #ffff;
+    color: white;
 }
 
+/* Botão de ação */
 #verClientes {
-    font-family: 'Nunito', sans-serif;
-    width: 93.75%;            /* 75% * 1.25 = 93.75% */
-    padding: 12.5px;          /* 10px * 1.25 = 12.5px */
-    margin-top: 12.5px;       /* Espaçamento proporcional */
+    width: 100%;
+    padding: 14px;
     border: none;
-    border-radius: 50px;      /* Aumentei ligeiramente para manter a proporção */
-    font-size: 20px;          /* 16px * 1.25 = 20px */
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    background: #ff4081;
+    color: white;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+/* Efeito ao passar o mouse no botão */
+#verClientes:hover {
+    background: #e91e63;
 }
 
 /* Responsividade */
 @media (max-width: 400px) {
     section {
         width: 90%;
+    }
+    
+    h1 {
+        font-size: 24px;
     }
 }

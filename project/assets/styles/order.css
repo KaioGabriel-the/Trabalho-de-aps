@@ -1,92 +1,118 @@
-/* Estilos gerais para o body e a tela */
-body {
-    font-family: 'Nunito', sans-serif;
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
-    background-color: #090925;  /* Cor de fundo clara */
-    display: flex;
-    justify-content: center;  /* Centraliza a tela */
-    align-items: center;      /* Centraliza a tela verticalmente */
-    height: 100vh;            /* Altura total da tela */
-}
-
-/* Estilo para o container da tela de pedido */
-#form_pedido {
-    background: linear-gradient(135deg, #1e1e3f, #32325d);
-    padding: 30px;
-    border-radius: 8px;       /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombras suaves */
-    width: 350px;             /* Largura fixada para o form */
-    text-align: center;       /* Centraliza o texto */
-}
-
-/* Estilo para o título */
-#title_pedido {
-    font-size: 40px;
-    color:#ffcc00;
-    margin-bottom: 20px;
-    text-align: center;      /* Espaço abaixo do título */
-}
-
-/* Estilizando o fieldset */
-fieldset {
-    border: 2px solid #fff;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-/* Estilizando a legenda */
-legend {
-    font-weight: bold;
-    font-size: 18px;
-    color: #ffd82c;
-}
-
-/* Estilo para os rótulos (labels) */
-label {
-    display: block;
-    font-size: 16px;
-    margin: 10px 0 5px;
-    color: #fff;
-}
-
-/* Estilo para os selects */
-select {
-    width: 100%;              /* Faz os inputs ocuparem toda a largura do container */
-    padding: 10px;
-    border: 1px solid #ccc;  /* Borda suave */
-    border-radius: 15px;
-    font-size: 14px;
-    font-family: "Josefin Sans", serif;
-    background-color: #fff;
-}
-
-select:focus{
-    outline: none;
-}
-/* Estilo para o botão */
-button {
-    width: 100%;
+    box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
-    padding: 12px;
-    margin-top: 15px;         /* Espaço entre os botões */
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4CAF50;  /* Verde */
+}
+
+/* Fundo da página */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e1e3f, #32325d);
+    text-align: center;
+    padding: 20px;
+}
+
+/* Título principal */
+#title_pedido {
+    font-size: 36px;
     color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Container do formulário */
+#form_pedido {
+    background: rgba(255, 255, 255, 0.12); /* Fundo semi-transparente */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px); /* Efeito de vidro */
+    width: 450px;
+}
+
+/* Fieldset */
+fieldset {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Legenda do fieldset */
+legend {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 5px 10px;
+}
+
+/* Estilizando os rótulos */
+label {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Select (Caixa de seleção) */
+select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgb(0, 0, 0);
+    transition: 0.3s;
+}
+
+/* Efeito ao passar o mouse nos selects */
+select:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Placeholder cinza */
+select:invalid {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* Botão de envio */
+.submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    background: #ff4081;
+    color: white;
+    transition: 0.3s;
 }
 
 /* Efeito ao passar o mouse no botão */
-button:hover {
-    background-color: #45a049;
+.submit:hover {
+    background: #e91e63;
 }
 
 /* Responsividade */
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     #form_pedido {
         width: 90%;
+        padding: 25px;
+    }
+
+    #title_pedido {
+        font-size: 28px;
     }
 }
