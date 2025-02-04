@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de confirmação</title>
+    <title>Tela de Confirmação</title>
     <link rel="stylesheet" href="assets/styles/confirm.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,5 +14,27 @@
         <h1>Pedido Confirmado...</h1>
         <h2>Seu pedido já foi confirmado e está a caminho...</h2>
     </section>
+
+    <button id="verClientes">Ver Clientes</button>
+
+    <script>
+        document.getElementById("verClientes").addEventListener("click", async function () {
+            try {
+                // Faz uma requisição ao backend para verificar se há clientes
+                const resposta = await fetch("http://localhost:3000/clientes"); // <-- Certifique-se de que o servidor está rodando nessa porta
+                const clientes = await resposta.json();
+    
+                if (clientes.length > 0) {
+                    window.location.href = "clientes.html"; // Redireciona se houver clientes
+                } else {
+                    alert("Nenhum cliente cadastrado ainda!");
+                }
+            } catch (error) {
+                console.error("Erro ao verificar clientes:", error);
+                alert("Erro ao conectar com o servidor.");
+            }
+        });
+    </script>
+    
 </body>
 </html>

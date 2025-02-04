@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap">
+    <link rel="stylesheet" href="assets/styles/clientes.css">
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <div class="clientes-container" id="clientesContainer"></div>
+    
+    <script>
+        fetch("http://localhost:3000/clientes")
+            .then(response => response.json())
+            .then(clientes => {
+                const container = document.getElementById("clientesContainer");
+                clientes.forEach(cliente => {
+                    const card = document.createElement("div");
+                    card.classList.add("cliente-card");
+                    card.innerHTML = `
+                        <h3><i class="fas fa-user"></i> ${cliente.nome}</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> ${cliente.endereco}</p>
+                        <p><i class="fas fa-phone"></i> ${cliente.numero}</p>
+                        <p><i class="fas fa-home"></i> ${cliente.bairro}</p>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => {
+                alert("Erro ao carregar clientes");
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
