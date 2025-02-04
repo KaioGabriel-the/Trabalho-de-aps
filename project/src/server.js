@@ -10,6 +10,9 @@ const port = 3000;
 
 app.use(express.json());
 
+// variável de controle para sempre ter uma cópia do id do último cliente cadastrado
+let idUltimoClient;
+
 // Conexão com o MongoDB Atlas
 mongoose.connect('mongodb+srv://EnzoMello:198407Safado@pizzaria-cluster.2vrae.mongodb.net/pizzaria?retryWrites=true&w=majority', {
   useNewUrlParser: true, 
@@ -33,6 +36,7 @@ app.post('/cadastrar_cliente', async (req, res) => {
 
         // Salvando o cliente no banco
         await novoCliente.save();
+        idUltimoClient = novoCliente._id;
 
         res.status(201).json({ message: 'Cliente cadastrado com sucesso!', clienteId: novoCliente._id });
     } catch (err) {
@@ -43,21 +47,24 @@ app.post('/cadastrar_cliente', async (req, res) => {
 
 // Rota para cadastrar pedido diretamente no MongoDB
 app.post('/cadastrar_pedido', async (req, res) => {
-    const { sabor_pizza, tamanho_pizza, com_borda, clienteId } = req.body;
+    const { sabor_pizza, tamanho_pizza, com_borda } = req.body;
 
     try {
-        // Verificando se o cliente existe
-        const clienteExistente = await Cliente.findById(clienteId);
+        // Buscar o último cliente cadastrado
+        const clienteExistente = await Cliente.findById(idUltimoClient);
+
         if (!clienteExistente) {
             return res.status(400).json({ message: 'Cliente não encontrado' });
         }
+
+        console.log("ENCONTREI O ID DO ÚLTIMO CLIENTE: " + clienteExistente._id);
 
         // Criando um novo pedido associado ao cliente
         const novoPedido = new Pedido({
             sabor_pizza,
             tamanho_pizza,
             com_borda: com_borda === 'com_borda' ? true : false,
-            cliente: clienteId  // Relacionando o pedido com o cliente
+            cliente: clienteExistente._id  // Relacionando o pedido com o cliente
         });
 
         // Salvando o pedido no banco

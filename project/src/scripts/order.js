@@ -1,4 +1,3 @@
-
 function obterValoresPizza(){
 
     const saborPizza = document.getElementById('sabor_pizza').value;
