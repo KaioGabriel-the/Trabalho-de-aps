@@ -24,7 +24,7 @@ body {
 
 #nome_pizzaria h1 {
     font-size: 32px;
-    color: white;
+    color: #ffcc00;
     text-transform: uppercase;
 }
 
@@ -39,10 +39,14 @@ body {
     width: 400px; /* Largura ajustada */
 }
 
+.tela_login:hover{
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
+}
+
 /* Título */
 #login_title {
     font-size: 26px;
-    color: #fff;
+    color: #ffcc00;
     margin-bottom: 20px;
 }
 
