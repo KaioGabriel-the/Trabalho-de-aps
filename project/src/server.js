@@ -12,7 +12,7 @@ app.use(express.static("src")); // Servir arquivos estáticos (HTML, CSS, JS)
 
 const port = 3000;
 
-// variável de controle para armazenar o último cliente cadastrado
+// variável global para armazenar id do último cliente cadastrado
 let idUltimoClient;
 
 // Conexão com o MongoDB Atlas
@@ -23,7 +23,15 @@ mongoose.connect('mongodb+srv://EnzoMello:198407Safado@pizzaria-cluster.2vrae.mo
 .then(() => console.log('Conectado ao MongoDB Atlas'))
 .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
-// Rota para cadastrar cliente diretamente no MongoDB
+/**
+ * @route POST /cadastrar_cliente
+ * @desc Cadastra um novo cliente na collection Cliente do MongoDB
+ * @param {string} nome - Nome do cliente
+ * @param {string} endereco - Endereço do cliente
+ * @param {string} telefone - Número de telefone do cliente
+ * @param {string} bairro - Bairro onde o cliente reside
+ * @returns {object} JSON contendo a mensagem de sucesso e o ID do cliente cadastrado
+*/
 app.post('/cadastrar_cliente', async (req, res) => {
     const { nome, endereco, telefone, bairro } = req.body;
 
@@ -33,7 +41,7 @@ app.post('/cadastrar_cliente', async (req, res) => {
             endereco,
             numero: telefone,
             bairro
-        });
+        }); 
 
         await novoCliente.save();
         idUltimoClient = novoCliente._id;
@@ -45,7 +53,14 @@ app.post('/cadastrar_cliente', async (req, res) => {
     }
 });
 
-// Rota para cadastrar pedido diretamente no MongoDB
+/**  
+ * @route POST /cadastrar_cliente
+ * @desc Cadastra um novo cliente no MongoDB
+ * @param {string} sabor_pizza - Sabor da pizza escolhida pelo cliente
+ * @param {string} tamanho_pizza - Tamanho da pizza escolhida pelo cliente (P, M e G)
+ * @param {boolean} com_borda - Presença ou não da borda escolhida pelo cliente
+ * @returns {object} JSON contendo a mensagem de sucesso ou erro
+*/
 app.post('/cadastrar_pedido', async (req, res) => {
     const { sabor_pizza, tamanho_pizza, com_borda } = req.body;
 
@@ -73,7 +88,11 @@ app.post('/cadastrar_pedido', async (req, res) => {
     }
 });
 
-// Rota para buscar todos os clientes no banco com a função criada em Clientes
+/** 
+ * @route GET /clientes
+ * @desc Retorna todos os clientes cadastrados no banco de dados
+ * @returns {Array} Lista de clientes em formato JSON
+ * */
 app.get("/clientes", async (req, res) => {
     try {
         const clientes = await Cliente.find();  // Busca todos os clientes no MongoDB
@@ -84,7 +103,11 @@ app.get("/clientes", async (req, res) => {
 });
 
 
-// Rota para Listar Pedidos e Clientes Associados
+/** 
+ * @route GET /pedidos
+ * @desc Retorna todos os pedidos cadastrados no banco de dados, incluindo os dados do cliente associado
+ * @returns {Array} Lista de pedidos com os detalhes do cliente em formato JSON
+*/
 app.get("/pedidos", async (req, res) => {
     try {
         const pedidos = await Pedido.find().populate("cliente"); // Trazendo o cliente associado ao pedido

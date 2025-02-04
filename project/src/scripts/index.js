@@ -1,5 +1,8 @@
 
-// Função para obter valores das IDs em index.html
+/**
+ * Função para obter valores dos campos de entrada em index.html
+ * @returns {Object} Objeto contendo os valores dos campos: nome, endereço, telefone e bairro
+ */
 function obterValores(){
 
     const nomeCadastro = document.getElementById('nome').value;
@@ -10,7 +13,7 @@ function obterValores(){
     return {nomeCadastro, endereco, telefone, bairro};
 }
 
-// Aguarda a página ser carregada
+// Aguarda a página ser carregada completamente antes de executar o código
 document.addEventListener("DOMContentLoaded", ()=> {
 
     // Encontra o botão cadastrar na página
@@ -20,15 +23,21 @@ document.addEventListener("DOMContentLoaded", ()=> {
         return;
     }
 
-    // Adiciona um evento ao botão, para capturar os dados de suas IDs 
+    // Adiciona um evento de clique ao botão de cadastro, capturando os valores da página e enviando ao servidor
     button.addEventListener('click', async (event) => {
         event.preventDefault();  // Impede que a página recarregue assim que o botão cadastrar seja pressionado. Garantindo gravar os valores.
-        const {nomeCadastro, endereco, telefone, bairro} = obterValores();
-        await enviarParaServidor(nomeCadastro, endereco, telefone, bairro); // chama função para enviar ao servidor
+        const {nomeCadastro, endereco, telefone, bairro} = obterValores(); // Obtém valores dos campos.
+        await enviarParaServidor(nomeCadastro, endereco, telefone, bairro); // Envia para o servidor
     });
 });
 
-// Função para enviar os dados para o servidor (back end)
+/**  
+ * Função para enviar os dados do cliente ao servidor (server.js)
+ * @param {string} nomeCadastro - Nome do cliente
+ * @param {string} endereco - Endereço do cliente
+ * @param {string} telefone - Telefone do cliente
+ * @param {string} bairro - Bairro do cliente
+*/
 async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
     const urlBase = "http://localhost:3000"; // concatena a URL referência do servidor com a rota /cadastrar_cliente
     
@@ -36,7 +45,7 @@ async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
         const response = await fetch(urlBase+"/cadastrar_cliente", {
             method: 'POST', 
             headers: {
-                'Content-Type': 'application/json' // envia os dados como um JSON
+                'Content-Type': 'application/json' // Envia os dados como um JSON
             },
             body: JSON.stringify({ nome: nomeCadastro, endereco: endereco, telefone: telefone, bairro: bairro })
         });
@@ -45,7 +54,7 @@ async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
         
         if (response.ok) {  // Verifica se a resposta foi bem-sucedida
             console.log('Sucesso:', data);
-            window.location.href = "order.html";  // Redireciona apenas se o envio for bem-sucedido
+            window.location.href = "order.html";  // Redireciona para página de pedidos apenas se o envio for bem-sucedido
         } else {
             console.error('Erro ao cadastrar cliente:', data);
         }
