@@ -68,6 +68,21 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
+#form_login a {
+    color: #00A3FF; /* Azul claro para melhor contraste */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold; /* Deixa o texto mais visível */
+    font-size: 14px; /* Ajusta o tamanho da fonte */
+    display: inline-block; /* Garante que o link respeite o espaço do texto */
+    margin-top: 10px; /* Adiciona um pequeno espaçamento */
+}
+
+/* Mudança de cor ao passar o mouse */
+#form_login a:hover {
+    color: #FFD700; /* Dourado para efeito visual */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
 /* Botões */
 .bt-submit,
 button[type="reset"] {

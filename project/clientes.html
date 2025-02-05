@@ -8,10 +8,15 @@
 </head>
 <body>
     <h1>Lista de Clientes</h1>
+    <div class="botao-container">
+        <button><a href="order.html">Cadastrar Pedido</a></button>
+        <button><a href="index.html">Sair</a></button>
+    </div>
+    
     <div class="clientes-container" id="clientesContainer"></div>
     
     <script>
-        async function carregarClientes() {
+        async function loadClients() {
     try {
         const response = await fetch("http://localhost:3000/clientes");
         const clientes = await response.json();
@@ -37,7 +42,7 @@
     }
 }
 
-document.addEventListener("DOMContentLoaded", carregarClientes);
+document.addEventListener("DOMContentLoaded", loadClients);
 
     </script>
     
