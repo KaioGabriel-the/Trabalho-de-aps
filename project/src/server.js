@@ -30,17 +30,25 @@ mongoose.connect('mongodb+srv://EnzoMello:198407Safado@pizzaria-cluster.2vrae.mo
  * @param {string} endereco - Endereço do cliente
  * @param {string} telefone - Número de telefone do cliente
  * @param {string} bairro - Bairro onde o cliente reside
+ * @param {string} senha - Senha escolhida pelo cliente
  * @returns {object} JSON contendo a mensagem de sucesso e o ID do cliente cadastrado
 */
 app.post('/cadastrar_cliente', async (req, res) => {
-    const { nome, endereco, telefone, bairro } = req.body;
+    const { nome, cpf, telefone, senha, cep } = req.body;
 
     try {
+        // Verificar se já existe um cliente com o mesmo nome
+        const clienteExistente = await Cliente.findOne({ cpf });
+        if (clienteExistente) {
+            return res.status(400).json({ message: 'Erro: Já existe um cliente cadastrado com esse cpf.' });
+        }
+
         const novoCliente = new Cliente({
             nome,
-            endereco,
+            cpf,
             numero: telefone,
-            bairro
+            senha, 
+            cep
         }); 
 
         await novoCliente.save();
@@ -54,29 +62,22 @@ app.post('/cadastrar_cliente', async (req, res) => {
 });
 
 /**  
- * @route POST /cadastrar_cliente
- * @desc Cadastra um novo cliente no MongoDB
+ * @route POST /cadastrar_pedido
+ * @desc Cadastra um novo pedido no MongoDB
  * @param {string} sabor_pizza - Sabor da pizza escolhida pelo cliente
  * @param {string} tamanho_pizza - Tamanho da pizza escolhida pelo cliente (P, M e G)
  * @param {boolean} com_borda - Presença ou não da borda escolhida pelo cliente
  * @returns {object} JSON contendo a mensagem de sucesso ou erro
 */
 app.post('/cadastrar_pedido', async (req, res) => {
-    const { sabor_pizza, tamanho_pizza, com_borda } = req.body;
+    const { sabor_pizza, tamanho_pizza, com_borda, cpf_cliente } = req.body;
 
     try {
-        const clienteExistente = await Cliente.findById(idUltimoClient);
-        if (!clienteExistente) {
-            return res.status(400).json({ message: 'Cliente não encontrado' });
-        }
-
-        console.log("ENCONTREI O ID DO ÚLTIMO CLIENTE: " + clienteExistente._id);
-
         const novoPedido = new Pedido({
             sabor_pizza,
             tamanho_pizza,
             com_borda: com_borda === 'com_borda' ? true : false,
-            cliente: clienteExistente._id
+            clienteCpf: cpf_cliente // Apenas usa o CPF fornecido pelo usuário
         });
 
         await novoPedido.save();
@@ -88,6 +89,7 @@ app.post('/cadastrar_pedido', async (req, res) => {
     }
 });
 
+
 /** 
  * @route GET /clientes
  * @desc Retorna todos os clientes cadastrados no banco de dados
@@ -95,12 +97,26 @@ app.post('/cadastrar_pedido', async (req, res) => {
  * */
 app.get("/clientes", async (req, res) => {
     try {
-        const clientes = await Cliente.find();  // Busca todos os clientes no MongoDB
-        res.json(clientes);
+        const clientes = await Cliente.find(); // Busca todos os clientes no banco
+
+        // Contar pedidos de cada cliente
+        const clientesComPedidos = await Promise.all(clientes.map(async (cliente) => {
+            const quantidadePedidos = await Pedido.countDocuments({ clienteCpf: cliente.cpf });
+            return { 
+                nome: cliente.nome,
+                cep: cliente.cep,
+                numero: cliente.numero,
+                cpf: cliente.cpf,
+                quantidadePedidos
+            };
+        }));
+
+        res.json(clientesComPedidos);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar clientes", error });
     }
 });
+
 
 
 /** 
@@ -114,6 +130,33 @@ app.get("/pedidos", async (req, res) => {
         res.json(pedidos);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar pedidos", error });
+    }
+});
+
+app.post('/login', async (req, res) => {
+    const { cpf, senha } = req.body;
+
+    try {
+        const cliente = await Cliente.findOne({ cpf });
+
+        if (!cliente) {
+            return res.status(400).json({ message: "CPF não encontrado! Faça o cadastro primeiro." });
+        }
+
+        if (cliente.senha !== senha) {
+            return res.status(400).json({ message: "Senha incorreta!" });
+        }
+
+        res.status(200).json({ 
+            message: "Login bem-sucedido!", 
+            cliente: {
+                nome: cliente.nome,
+                cpf: cliente.cpf
+            } 
+        });
+    } catch (err) {
+        console.error("Erro ao realizar login:", err);
+        res.status(500).json({ message: "Erro no servidor", error: err });
     }
 });
 

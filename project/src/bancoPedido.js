@@ -6,7 +6,7 @@ const pedidoSchema = new mongoose.Schema({
     sabor_pizza: { type: String, required: true },
     tamanho_pizza: { type: String, required: true },
     com_borda: { type: Boolean, required: true },
-    cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente', required: true }
+    clienteCpf: { type: String, required: true }
 });
 
 // Cria um modelo de Pedido de acordo com o esquema definido, permitindo manipulá-lo diretamente na collection Pedidos do Banco
