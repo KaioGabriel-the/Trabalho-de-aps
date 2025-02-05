@@ -16,14 +16,18 @@
             <h1 id="login_title">Cadastrar Cliente</h1>
             <form id="form_login">
                 <input type="text" id="nome" placeholder="Digite seu nome" required>
-                <input type="text" id="bairro" placeholder="Digite seu bairro" required>
-                <input type="text" id="endereco" placeholder="Digite seu endereço" required>
+                <input type="text" id="cpf" placeholder="Digite seu CPF" required>
                 <input type="text" id="telefone" placeholder="Digite seu telefone" required>
                 <input type="text" id="senha" placeholder="Digite uma senha" required>
+                <input type="text" id="cep" placeholder="Digite seu CEP" required>
+                <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
                 <button class="bt-submit">Cadastrar</button>
                 <button type="reset" >Limpar</button>
             </form>
         </div>
+
+        <div id="mensagem" class="mensagem"></div>
+
         <script src="/src/scripts/index.js"></script>
     </body>
 </html>

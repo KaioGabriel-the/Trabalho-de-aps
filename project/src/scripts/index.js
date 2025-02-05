@@ -6,11 +6,16 @@
 function obterValores(){
 
     const nomeCadastro = document.getElementById('nome').value;
-    const endereco = document.getElementById('endereco').value;
+    const cpf = document.getElementById('cpf').value;
     const telefone = document.getElementById('telefone').value;
-    const bairro = document.getElementById('bairro').value;
+    const senha = document.getElementById('senha').value;
+    const cep = document.getElementById('cep').value;
 
-    return {nomeCadastro, endereco, telefone, bairro};
+
+    const mensagemDiv = document.getElementById("mensagem");
+
+
+    return {nomeCadastro, cpf, telefone, senha, cep, mensagemDiv};
 }
 
 // Aguarda a página ser carregada completamente antes de executar o código
@@ -26,8 +31,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
     // Adiciona um evento de clique ao botão de cadastro, capturando os valores da página e enviando ao servidor
     button.addEventListener('click', async (event) => {
         event.preventDefault();  // Impede que a página recarregue assim que o botão cadastrar seja pressionado. Garantindo gravar os valores.
-        const {nomeCadastro, endereco, telefone, bairro} = obterValores(); // Obtém valores dos campos.
-        await enviarParaServidor(nomeCadastro, endereco, telefone, bairro); // Envia para o servidor
+        const {nomeCadastro, cpf, telefone, senha, cep, mensagemDiv} = obterValores(); // Obtém valores dos campos.
+        await enviarParaServidor(nomeCadastro, cpf, telefone, senha, cep, mensagemDiv); // Envia para o servidor
     });
 });
 
@@ -37,8 +42,9 @@ document.addEventListener("DOMContentLoaded", ()=> {
  * @param {string} endereco - Endereço do cliente
  * @param {string} telefone - Telefone do cliente
  * @param {string} bairro - Bairro do cliente
+ * @param {string} senha - Senha escolhida pelo cliente
 */
-async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
+async function enviarParaServidor(nomeCadastro, cpf, telefone, senha, cep, mensagemDiv) {
     const urlBase = "http://localhost:3000"; // concatena a URL referência do servidor com a rota /cadastrar_cliente
     
     try {
@@ -47,19 +53,28 @@ async function enviarParaServidor(nomeCadastro, endereco, telefone, bairro) {
             headers: {
                 'Content-Type': 'application/json' // Envia os dados como um JSON
             },
-            body: JSON.stringify({ nome: nomeCadastro, endereco: endereco, telefone: telefone, bairro: bairro })
+            body: JSON.stringify({ nome: nomeCadastro, cpf: cpf, telefone: telefone, senha: senha, cep: cep })
         });
 
         const data = await response.json();
         
         if (response.ok) {  // Verifica se a resposta foi bem-sucedida
             console.log('Sucesso:', data);
+            localStorage.setItem("cpf_cliente", cpf);
             window.location.href = "order.html";  // Redireciona para página de pedidos apenas se o envio for bem-sucedido
         } else {
             console.error('Erro ao cadastrar cliente:', data);
+            mensagemDiv.textContent = "❌ " + data.message;
+            mensagemDiv.className = "mensagem erro";
         }
+
+        mensagemDiv.style.display = "block"; // Exibe a mensagem
+
     } catch (error) {
         console.error('Erro:', error);
+        mensagemDiv.textContent = "❌ Erro ao conectar ao servidor.";
+        mensagemDiv.className = "mensagem erro";
+        mensagemDiv.style.display = "block";
     }
 }
 

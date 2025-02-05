@@ -44,20 +44,28 @@ document.addEventListener("DOMContentLoaded", () => {
 async function enviarPedidoParaServidor(saborPizza, tamanhoPizza, comBorda) {
     const urlBase = "http://localhost:3000";
 
+    // Obtém o CPF do cliente do localStorage
+    const cpfCliente = localStorage.getItem("cpf_cliente");
+
+    if (!cpfCliente) {
+        console.error("Erro: CPF do cliente não encontrado!");
+        return;
+    }
+
     try {
         const response = await fetch(urlBase + "/cadastrar_pedido", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json" // Envia os dados como um JSON
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({ sabor_pizza: saborPizza, tamanho_pizza: tamanhoPizza, com_borda: comBorda })
+            body: JSON.stringify({ sabor_pizza: saborPizza, tamanho_pizza: tamanhoPizza, com_borda: comBorda, cpf_cliente: cpfCliente })
         });
 
         const data = await response.json();
 
-        if (response.ok) { // Verifica se resposta de envio foi bem-sucedida.
+        if (response.ok) {
             console.log("Sucesso:", data);
-            window.location.href = "confirm.html";  // Redireciona para confirm.html apenas após sucesso 
+            window.location.href = "confirm.html";  // Redireciona para a confirmação do pedido
         } else {
             console.error("Erro ao registrar pedido:", data);
         }
@@ -65,3 +73,4 @@ async function enviarPedidoParaServidor(saborPizza, tamanhoPizza, comBorda) {
         console.error("Erro:", error);
     }
 }
+
