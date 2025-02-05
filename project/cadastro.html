@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nome do site</title>
+        <link rel="stylesheet" href="assets/styles/index.css">
+    </head>
+    <body>
+        <!-- Nome da pizzaria no topo -->
+        <div id="nome_pizzaria">
+            <h1>NOME DA PIZZARIA</h1>
+        </div>
+        
+        <div id="tela_login" class="tela_login">
+            <h1 id="login_title">Cadastrar Cliente</h1>
+            <form id="form_login">
+                <input type="text" id="nome" placeholder="Digite seu nome" required>
+                <input type="text" id="cpf" placeholder="Digite seu CPF" required>
+                <input type="text" id="telefone" placeholder="Digite seu telefone" required>
+                <input type="text" id="senha" placeholder="Digite uma senha" required>
+                <input type="text" id="cep" placeholder="Digite seu CEP" required>
+                <p>Já tem uma conta? <a href="index.html">Faça aqui</a></p>
+                <button class="bt-submit">Cadastrar</button>
+                <button type="reset" >Limpar</button>
+            </form>
+        </div>
+
+        <div id="mensagem" class="mensagem"></div>
+
+        <script src="/src/scripts/cadastro.js"></script>
+    </body>
+</html>

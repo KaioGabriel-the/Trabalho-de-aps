@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node src/server.js && http://localhost:5500"
+  },
   "dependencies": {
     "mongodb": "^6.13.0",
     "mongoose": "^8.9.6"
