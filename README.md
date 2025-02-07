@@ -1,6 +1,6 @@
 # 🍕 Sistema de Controle de Pizzaria
 ## Alunos
-- Enzo Melo Araújo
+- Enzo Melo Araújo (2024111TADS0010)
 - Kaio Gabriel
 
 ## 📌 Sobre o Projeto
