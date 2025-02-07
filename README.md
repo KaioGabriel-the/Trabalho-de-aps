@@ -10,17 +10,16 @@ Sistema de controle de Pizzaria é um sistema que permite que clientes se cadast
 ## 🚀 Tecnologias Utilizadas
 
 ### Backend
-- **Node.js** com **Express.js** para gerenciamento das rotas e lógica de negócio.
-- **TypeScript** para melhor organização e segurança do código.
-- **MongoDB (MongoDB Atlas)** para armazenamento dos dados.
-- **Mongoose** para modelagem do banco de dados.
-- **JWT** para autenticação de usuários.
-- **Bcrypt** para criptografia de senhas.
+- **Node.js com Express.js**: Utilizado para criar um servidor rápido e eficiente, com Express facilitando o gerenciamento de rotas e a lógica de negócio.
+- **JavaScript**: Utilizado no backend para escrever a lógica do servidor e interagir com o banco de dados.
+- **MongoDB (MongoDB Atlas)**: Armazena os dados de forma escalável e eficiente na nuvem.
+- **Mongoose**: Facilita a modelagem e manipulação dos dados no MongoDB com uma interface simples.
+- **JWT**: Utilizado para autenticar usuários e garantir a segurança das rotas.
+- **Bcrypt**: Criptografa as senhas dos usuários para proteger informações sensíveis.
 
 ### Frontend
-- **HTML5** e **CSS3** para estrutura e estilização das páginas.
-- **JavaScript** para interatividade no frontend.
-- **LocalStorage** para armazenar informações temporárias do usuário.
+- **HTML5 e CSS3**: Usados para estruturar e estilizar as páginas, garantindo uma boa experiência visual.
+- **JavaScript**: Adiciona interatividade às páginas e permite comunicação com o backend.
 
 ## 🔥 Funcionalidades
  📝 **Cadastro de Clientes:** Permite o registro de clientes que utilizarão o sistema.
