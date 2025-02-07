@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
+    <title>Login - Pizzaria</title>
     <link rel="stylesheet" href="assets/styles/login.css">
 </head>
 <body>
+
+     <div id="nome_pizzaria">
+        <h1>🍕 Pizzaria DR.Kaio 🍕</h1>
+    </div>
+
     <div id="tela-login-inicial" class="tela-login-inicial">
-        <h1 id="titulo-tela-login" class="titulo-tela-login">Login</h1>
+        <h1 class="titulo-tela-login">Login</h1>
         <form id="form-login">
             <input type="text" id="cpfUsuario" placeholder="Digite seu CPF" required>
             <input type="password" id="senhaUsuario" placeholder="Digite sua Senha" required>
-            <p>Não tem cadastro? <a href="cadastro.html">Faça seu cadastro aqui</a></p>
+            <p>Não tem cadastro? <a href="cadastro.html">Cadastre-se aqui</a></p>
             <button type="submit" class="bt-login">Entrar</button>
         </form>
-        <div id="mensagemErro"></div>
+        <div id="mensagemErro" class="mensagem-erro"></div>
     </div>
 
     <script src="src/scripts/index.js"></script>

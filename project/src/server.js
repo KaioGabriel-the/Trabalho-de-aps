@@ -121,17 +121,28 @@ app.get("/clientes", async (req, res) => {
 
 /** 
  * @route GET /pedidos
- * @desc Retorna todos os pedidos cadastrados no banco de dados, incluindo os dados do cliente associado
- * @returns {Array} Lista de pedidos com os detalhes do cliente em formato JSON
-*/
+ * @desc Retorna todos os pedidos do cliente com o CPF especificado
+ * @query {string} cpf - CPF do cliente para buscar seus pedidos
+ * @returns {Array} Lista de pedidos do cliente
+ */
 app.get("/pedidos", async (req, res) => {
     try {
-        const pedidos = await Pedido.find().populate("cliente"); // Trazendo o cliente associado ao pedido
+        const { cpf } = req.query; // Recebe o CPF do cliente
+
+        if (!cpf) {
+            return res.status(400).json({ message: "CPF não fornecido." });
+        }
+
+        // Buscar todos os pedidos desse cliente no banco
+        const pedidos = await Pedido.find({ clienteCpf: cpf });
+
         res.json(pedidos);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar pedidos", error });
     }
 });
+
+
 
 app.post('/login', async (req, res) => {
     const { cpf, senha } = req.body;

@@ -13,7 +13,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(135deg, #1e1e3f, #32325d);
+    background-color: #090925;
     text-align: center;
 }
 
@@ -23,27 +23,29 @@ body {
 }
 
 #nome_pizzaria h1 {
-    font-size: 32px;
-    color: #ffcc00;
+    font-size: 40px;
+    color: #FFD700;
     text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(255, 215, 0, 0.5);
 }
 
 /* Container do formulário */
 .tela_login {
     background: rgba(255, 255, 255, 0.1); /* Fundo transparente */
-    padding: 40px; /* Aumentado */
+    padding: 40px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px); /* Efeito de vidro */
     text-align: center;
-    width: 400px; /* Largura ajustada */
+    width: 400px;
 }
 
-.tela_login:hover{
+.tela_login:hover {
     box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
 }
 
-/* Título */
+/* Título do login */
 #login_title {
     font-size: 26px;
     color: #ffcc00;
@@ -68,19 +70,20 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* Links */
 #form_login a {
-    color: #00A3FF; /* Azul claro para melhor contraste */
-    text-decoration: none; /* Remove o sublinhado padrão */
-    font-weight: bold; /* Deixa o texto mais visível */
-    font-size: 14px; /* Ajusta o tamanho da fonte */
-    display: inline-block; /* Garante que o link respeite o espaço do texto */
-    margin-top: 10px; /* Adiciona um pequeno espaçamento */
+    color: #FFD700; /* Dourado */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 /* Mudança de cor ao passar o mouse */
 #form_login a:hover {
-    color: #FFD700; /* Dourado para efeito visual */
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    color: #ffcc00;
+    text-decoration: underline;
 }
 
 /* Botões */
@@ -117,17 +120,12 @@ button[type="reset"]:hover {
     background: #e68900;
 }
 
-/* Responsividade */
-@media (max-width: 450px) {
-    .tela_login {
-        width: 90%;
-        height: auto;
-        padding: 30px;
-    }
-}
-
-.mensagem {
-    display: none;
+/* Mensagem de erro */
+.mensagem-erro {
+    display: block;
+    background-color: rgba(255, 215, 0, 0.2); /* Fundo dourado transparente */
+    color: #FFD700;
+    border: 2px solid #FFD700;
     padding: 10px;
     margin: 10px auto;
     width: 50%;
@@ -137,17 +135,11 @@ button[type="reset"]:hover {
     font-weight: bold;
 }
 
-.erro {
-    display: block;
-    background-color: #ffcccc;
-    color: #cc0000;
-    border: 2px solid #cc0000;
+/* Responsividade */
+@media (max-width: 450px) {
+    .tela_login {
+        width: 90%;
+        height: auto;
+        padding: 30px;
+    }
 }
-
-.sucesso {
-    display: block;
-    background-color: #ccffcc;
-    color: #006600;
-    border: 2px solid #006600;
-}
-

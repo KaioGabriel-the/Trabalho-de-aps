@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
+    <title>Lista de Pedidos do Cliente</title>
     <link rel="stylesheet" href="assets/styles/clientes.css">
 </head>
 <body>
-    <h1>Lista de Clientes</h1>
+    <h1>Lista de Pedidos do Cliente</h1>
     <div class="botao-container">
         <button><a href="order.html">Cadastrar Pedido</a></button>
         <button><a href="index.html">Sair</a></button>
@@ -17,35 +17,39 @@
     
     <script>
         async function loadClients() {
-    try {
-        const response = await fetch("http://localhost:3000/clientes");
-        const clientes = await response.json();
+            try {
+                const cpfCliente = localStorage.getItem("cpf_cliente"); // Pega o CPF armazenado no localStorage
+                if (!cpfCliente) {
+                    alert("Cliente não encontrado. Realize o login.");
+                    return;
+                }
 
-        const container = document.getElementById("clientesContainer");
-        container.innerHTML = ""; // Limpa o conteúdo antes de adicionar os clientes
+                // Requisição para buscar os pedidos do cliente logado
+                const response = await fetch(`http://localhost:3000/pedidos?cpf=${cpfCliente}`);
+                const pedidos = await response.json();
 
-        clientes.forEach(cliente => {
-            const card = document.createElement("div");
-            card.classList.add("cliente-card");
-            card.innerHTML = `
-                <h3>${cliente.nome}</h3>
-                <p><strong>🗺️ CEP:</strong> ${cliente.cep}</p>
-                <p><strong>>🏠  Número:</strong> ${cliente.numero}</p>
-                <p class="pedidos-info"><strong>🍕 Pedidos feitos:</strong> ${cliente.quantidadePedidos}</p>
-            `;
-            container.appendChild(card);
-        });
+                const container = document.getElementById("clientesContainer");
+                container.innerHTML = ""; // Limpa o conteúdo antes de adicionar os pedidos
 
-    } catch (error) {
-        console.error("Erro ao carregar clientes:", error);
-        alert("Erro ao carregar clientes.");
-    }
-}
+                // Exibe os pedidos dentro de cartões
+                pedidos.forEach(pedido => {
+                    const card = document.createElement("div");
+                    card.classList.add("pedido-card");
+                    card.innerHTML = `
+                        <h3>📌 Pedido de ${pedido.sabor_pizza}</h3>
+                        <p><strong>Tamanho:</strong> 🍕 ${pedido.tamanho_pizza}</p>
+                        <p><strong>Borda:</strong>🍕  ${pedido.com_borda ? 'Com Borda' : 'Sem Borda'}</p>
+                    `;
+                    container.appendChild(card);
+                });
 
-document.addEventListener("DOMContentLoaded", loadClients);
+            } catch (error) {
+                console.error("Erro ao carregar pedidos:", error);
+                alert("Erro ao carregar pedidos.");
+            }
+        }
 
+        document.addEventListener("DOMContentLoaded", loadClients);
     </script>
-    
-    
 </body>
 </html>

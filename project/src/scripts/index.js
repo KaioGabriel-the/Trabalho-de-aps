@@ -5,6 +5,9 @@ document.getElementById("form-login").addEventListener("submit", async function 
     const senha = document.getElementById("senhaUsuario").value.trim();
     const mensagemErro = document.getElementById("mensagemErro");
 
+    // Limpa mensagens anteriores
+    mensagemErro.textContent = "";
+
     if (!cpf || !senha) {
         mensagemErro.textContent = "Preencha todos os campos.";
         return;
@@ -20,9 +23,12 @@ document.getElementById("form-login").addEventListener("submit", async function 
         const data = await response.json();
 
         if (response.ok) {
-            // Armazena o CPF do cliente no localStorage
+            // Armazena o CPF e nome do cliente no localStorage
             localStorage.setItem("cpf_cliente", data.cliente.cpf);
-            window.location.href = "order.html"; // Redireciona para a página de pedidos
+            localStorage.setItem("nome_cliente", data.cliente.nome);
+            
+            // Redireciona para a página de pedidos
+            window.location.href = "order.html"; 
         } else {
             mensagemErro.textContent = data.message;
         }

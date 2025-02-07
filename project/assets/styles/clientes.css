@@ -20,7 +20,7 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* Container dos clientes */
+/* Container dos pedidos */
 .clientes-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -29,47 +29,36 @@ h1 {
     max-width: 1200px;
 }
 
-/* Cartão do cliente */
-.cliente-card {
+/* Cartão do pedido */
+.pedido-card {
     background: linear-gradient(135deg, #1b1b3a, #2a2a5a);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 15px rgba(17, 63, 200, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 204, 0, 0.4);
 }
 
-.cliente-card:hover {
+.pedido-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(255, 204, 0, 0.5);
 }
 
-/* Nome do cliente */
-.cliente-card h3 {
+/* Título do pedido */
+.pedido-card h3 {
     margin: 0;
     font-size: 20px;
     color: #ffcc00;
     font-weight: bold;
 }
 
-/* Informações do cliente */
-.cliente-card p {
+/* Informações do pedido */
+.pedido-card p {
     font-size: 15px;
     margin: 6px 0;
     color: #ccc;
-}
-
-/* Número de pedidos */
-.pedidos-info {
-    margin-top: 10px;
-    padding: 8px;
-    border-radius: 6px;
-    background: rgba(255, 204, 0, 0.2);
-    color: #ffcc00;
-    font-weight: bold;
-    text-align: center;
 }
 
 /* Responsividade */
@@ -119,5 +108,3 @@ h1 {
     display: block;
     text-align: center;
 }
-
-

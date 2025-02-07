@@ -9,27 +9,40 @@
 /* Fundo da página */
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     background-color: #090925;
-}
-
-/* Container do login */
-.tela-login-inicial {
-    background: rgba(255, 255, 255, 0.1); /* Fundo transparente */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px); /* Efeito de vidro */
     text-align: center;
-    width: 320px;
 }
 
-.tela-login-inicial:hover {
-    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
+/* Nome da pizzaria */
+#nome_pizzaria {
+    margin-bottom: 20px;
 }
-/* Título */
+
+#nome_pizzaria h1 {
+    font-size: 40px;
+    color: #FFD700;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Container do formulário */
+.tela-login-inicial {
+    background: rgba(255, 255, 255, 0.1); /* Fundo translúcido */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 400px;
+    position: relative;
+}
+
+/* Título do login */
 .titulo-tela-login {
     font-size: 26px;
     color: #ffcc00;
@@ -39,8 +52,8 @@ body {
 /* Inputs */
 #form-login input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -54,43 +67,61 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-#form_cadastro a {
-    color: #00A3FF; /* Azul claro para melhor contraste */
-    text-decoration: none; /* Remove o sublinhado padrão */
-    font-weight: bold; /* Deixa o texto mais visível */
-    font-size: 14px; /* Ajusta o tamanho da fonte */
-    display: inline-block; /* Garante que o link respeite o espaço do texto */
-    margin-top: 10px; /* Adiciona um pequeno espaçamento */
+/* Links */
+#form-login a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 /* Mudança de cor ao passar o mouse */
-#form_cadastro a:hover {
-    color: #FFD700; /* Dourado para efeito visual */
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+#form-login a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
 }
 
-/* Botão */
+/* Botão de login */
 .bt-login {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
     border-radius: 8px;
     font-size: 18px;
     font-weight: bold;
-    background: #ff4081;
-    color: white;
     cursor: pointer;
     transition: 0.3s;
+    background: #ff4081;
+    color: white;
+    margin-top: 10px;
 }
 
-/* Efeito hover no botão */
 .bt-login:hover {
     background: #e91e63;
 }
 
+/* Mensagem de erro */
+.mensagem-erro {
+    display: none;
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
 /* Responsividade */
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     .tela-login-inicial {
         width: 90%;
+        height: auto;
+        padding: 30px;
     }
 }
