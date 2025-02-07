@@ -5,7 +5,7 @@
 
 ## 📌 Sobre o Projeto
 
-Sistema de controle de Pizzaria é um sistema que permite que clientes se cadastrem, façam login e realizem pedidos de pizzas de forma intuitiva. O backend, desenvolvido em TypeScript com Express, gerencia a comunicação com o banco de dados MongoDB, garantindo persistência dos dados. 
+Sistema de controle de Pizzaria é um sistema que permite que clientes se cadastrem, façam login e realizem pedidos de pizzas de forma intuitiva. O backend, desenvolvido em JavaScript com Express, gerencia a comunicação com o banco de dados MongoDB, garantindo persistência dos dados. 
 
 ## 🚀 Tecnologias Utilizadas
 
