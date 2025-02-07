@@ -29,8 +29,8 @@ mongoose.connect('mongodb+srv://EnzoMello:198407Safado@pizzaria-cluster.2vrae.mo
  * @param {string} nome - Nome do cliente
  * @param {string} endereco - Endereço do cliente
  * @param {string} telefone - Número de telefone do cliente
- * @param {string} bairro - Bairro onde o cliente reside
  * @param {string} senha - Senha escolhida pelo cliente
+ * @param {string} cep - Endereço do cliente
  * @returns {object} JSON contendo a mensagem de sucesso e o ID do cliente cadastrado
 */
 app.post('/cadastrar_cliente', async (req, res) => {
@@ -67,6 +67,7 @@ app.post('/cadastrar_cliente', async (req, res) => {
  * @param {string} sabor_pizza - Sabor da pizza escolhida pelo cliente
  * @param {string} tamanho_pizza - Tamanho da pizza escolhida pelo cliente (P, M e G)
  * @param {boolean} com_borda - Presença ou não da borda escolhida pelo cliente
+ * @param {string} clienteCpf - cpf do cliente vinculado ao pedido
  * @returns {object} JSON contendo a mensagem de sucesso ou erro
 */
 app.post('/cadastrar_pedido', async (req, res) => {

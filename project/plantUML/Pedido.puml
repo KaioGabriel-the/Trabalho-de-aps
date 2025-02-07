@@ -1,0 +1,33 @@
+@startuml
+class Pedido {
+    +String sabor_pizza
+    +String tamanho_pizza
+    +Boolean com_borda
+    +String clienteCpf
+}
+
+class Cliente {
+    +String nome
+    +String cpf
+    +String numero
+    +String senha
+    +String cep
+}
+
+class Servidor {
+    +cadastrarCliente()
+    +fazerLogin()
+    +realizarPedido()
+}
+
+class MongoDB {
+    +ArmazenaClientes()
+    +ArmazenaPedidos()
+}
+
+Pedido "0..*" -- "1" Cliente : pertence a
+Servidor --> Pedido : gerencia
+Servidor --> MongoDB : conecta
+MongoDB --> Pedido : armazena
+
+@enduml

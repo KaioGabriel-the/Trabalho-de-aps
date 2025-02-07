@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
  * @param {string} sabor_pizza - Sabor da pizza escolhida 
  * @param {string} tamanho_pizza - Tamanho da pizza escolhida
  * @param {boolean} com_borda - Borda da pizza no pedido
+ * @param {string} cpf_cliente - cpf do cliente a ser vinculado com pedido
 */
 async function enviarPedidoParaServidor(saborPizza, tamanhoPizza, comBorda) {
     const urlBase = "http://localhost:3000";
