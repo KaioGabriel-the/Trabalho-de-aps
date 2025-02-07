@@ -33,3 +33,24 @@ Sistema de controle de Pizzaria é um sistema que permite que clientes se cadast
 ## 📄 Documentações do proejto
 1. Casos de uso com suas documentações e Diagrama de Sequência: [Documentações de casos de uso](https://docs.google.com/document/d/1qlk3vOQsDBw1riC95uie3Dtg7VkSP8-Q_hYJ2pxbDFY/edit?usp=sharing)
 2. Implementação das classes via código UML: [Classes UML](https://github.com/KaioGabriel-the/Trabalho-de-aps/tree/main/project/plantUML)
+
+## Telas da aplicação
+### Tela de login
+![image](https://github.com/user-attachments/assets/895e7eec-52e0-42da-982f-5b076cec08a4)
+
+### Tela de cadastro
+![image](https://github.com/user-attachments/assets/d99c8e42-6b59-4200-ba08-8ffecc4df211)
+
+### Tela de escolher pedido
+![image](https://github.com/user-attachments/assets/70d245d3-8022-43ab-8824-bda22d63ff75)
+
+### Confirmação do pedido
+![image](https://github.com/user-attachments/assets/e6fbe715-7af9-4d18-9b41-0385a25897e0)
+
+### Visualizar pedidos do respectivo cliente
+![image](https://github.com/user-attachments/assets/557c44ba-f00f-4782-b2d1-17522d250246)
+
+
+
+
+
